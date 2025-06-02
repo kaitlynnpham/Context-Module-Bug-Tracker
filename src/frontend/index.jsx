@@ -48,7 +48,8 @@ const View = () => {
       // refresh table with newly created ticket
       await fetchData();
       closeModal();
-      const issueUrl = `https://boardpackager.atlassian.net/browse/${result.key}`;
+      // change to your company's jira website
+      const issueUrl = `https:/{enter company website}.atlassian.net/browse/${result.key}`;
       // open new ticket in different tab
       router.open(issueUrl);
     } catch (e) {
@@ -64,7 +65,8 @@ const View = () => {
     cells: [
       {
         key: issue.key,
-        content: <Link href={`https://boardpackager.atlassian.net/browse/${issue.key}`} target="_blank" rel="noopener noreferrer">{issue.key}</Link>,
+        //change link to company's website
+        content: <Link href={`https://{enter company website}.atlassian.net/browse/${issue.key}`} target="_blank" rel="noopener noreferrer">{issue.key}</Link>,
       },
       {
         key: issue.fields.summary,
@@ -103,8 +105,6 @@ const View = () => {
 
   // loading table message
   if (loading) return <Text>Loading related issues...</Text>;
-
-  const url = `https://boardpackager.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=15034&issuetype=10440&customfield_11416=${currentKey}`
 
   return (
     <>

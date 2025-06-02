@@ -6,6 +6,7 @@ const resolver = new Resolver();
 
 resolver.define('fetchIssueKey', async (req) => {
   const key = req.context.extension.issue.key;
+  //replace with your custom field to connect tickets to the main ticket (used Issue Picker)
   const customFieldId = '"Related Ticket"';
 
   if (!key) {
@@ -45,6 +46,9 @@ resolver.define('createIssue', async ({ payload }) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+    //replace with project board to store the related bug tickets
+    //replace with issue type id (used bug issue type)
+    //replace with custom field id (Related Ticket)
     body: JSON.stringify({
       fields: {
         project:{key: "BTB"},
