@@ -16,18 +16,12 @@ modules:
           - issue-view
         formatter:
           expression: "`Bug Tracker`"
-      contextConfig:
-        resource: config
-        layout: basic
-        render: native
   function:
     - key: resolver
       handler: index.handler
 resources:
   - key: main
     path: src/frontend/index.jsx
-  - key: config
-    path: src/frontend/context-config.jsx
 permissions:
   scopes:
     - read:jira-work
