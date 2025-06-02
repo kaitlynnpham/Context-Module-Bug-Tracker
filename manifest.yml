@@ -1,0 +1,41 @@
+modules:
+  jira:issueContext:
+    - key: bug-tracker-issue-context
+      resource: main
+      resolver:
+        function: resolver
+      render: native
+      title: Bug Tickets Tracker 
+      description: A custom Bug Ticket Tracker 
+      label: Bug Tracker
+      viewportSize: medium
+      view:
+        render: native
+        resource: main
+        experience:
+          - issue-view
+        formatter:
+          expression: "`Bug Tracker`"
+      contextConfig:
+        resource: config
+        layout: basic
+        render: native
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+  - key: config
+    path: src/frontend/context-config.jsx
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - read:jql:jira
+app:
+  runtime:
+    name: nodejs22.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/9e3f6c22-c72d-4dca-bf1a-21cce8acc846
