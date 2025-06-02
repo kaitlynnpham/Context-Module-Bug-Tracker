@@ -1,6 +1,13 @@
-# Forge Hello World
+#Jira Issue Context Bug Tracker 
 
-This project contains a Forge app written in Javascript that displays a dynamic table of related bug tickets in a Jira issue context panel. It displays a `Create Bug Ticket` button that will open a modal  for users to type in a summary. After submitting, it will open the newly created ticket in a new tab and display the ticket in the table.
+This project contains a Forge app written in Javascript that displays a dynamic table of related bug tickets in a Jira issue context panel. It displays a `Create Bug Ticket` button that will open a modal for users to type in a summary. After submitting, it will open the newly created ticket in a new tab and display the ticket in the table.
+
+This project is an updated version of the `Jira Bug Tracker`. This replaces the jira issue panel since users would have to click on `Apps' each time to display this app. By using an Issue Context, this will always be displayed on the right panel of an issue. Users can click the dropdown once to keep this app open on all tickets. 
+
+The primary goal of this app is to streamline bug tracking while preventing clutter on the main project board. Previously, the quality analysis team documented fixes by leaving comments on existing tickets. By creating dedicated bug tickets instead, the team can more accurately represent workload. Additionally, Jira automation does not support rich text editor for the description fields to create automated tickets. This app simplifies the process by opening a modal for users to create a ticket. Users simply type in a new ticket summary and it will automatically open the created ticket in a new tab. This is a limitation of using Jira automations and has been solved with this custom Forge app. 
+
+
+
 
 See [developer.atlassian.com/platform/forge/](https://developer.atlassian.com/platform/forge) for documentation and tutorials explaining Forge.
 
