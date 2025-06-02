@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { invoke, router } from '@forge/bridge';
 import ForgeReconciler, {
-  render,
-  Fragment, Text, Button, DynamicTable, Link, Box,
+  Text, Button, DynamicTable, Link, Box,
   Modal, ModalBody, ModalTransition, ModalTitle, ModalFooter, ModalHeader,
   Form, useForm, Textfield, Label
 } from "@forge/react";
@@ -19,7 +18,6 @@ const View = () => {
 
   const fetchData = async () => {
     try {
-    
       await view.getContext();
       const result = await invoke('fetchIssueKey');
       setIssues(result.body);
@@ -40,14 +38,18 @@ const View = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      //wait for ticket to be created, block user from pressing submit again
       setCreating(true);
       const result = await invoke('createIssue', {
         summary: data.summary,
         parentKey: currentKey
       });
+
+      // refresh table with newly created ticket
       await fetchData();
       closeModal();
       const issueUrl = `https://boardpackager.atlassian.net/browse/${result.key}`;
+      // open new ticket in different tab
       router.open(issueUrl);
     } catch (e) {
       console.error('Error creating issue:', e);
@@ -56,6 +58,7 @@ const View = () => {
     }
 
   });
+  // set rows for dynamic table
   const rows = issues.map((issue, index) => ({
     key: `row-${index}-${issue.key}`,
     cells: [
@@ -74,6 +77,7 @@ const View = () => {
     ],
   }));
 
+  // set head for dynamic table
   const head = {
     cells: [
       {
@@ -97,13 +101,14 @@ const View = () => {
   };
 
 
-
+  // loading table message
   if (loading) return <Text>Loading related issues...</Text>;
 
   const url = `https://boardpackager.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=15034&issuetype=10440&customfield_11416=${currentKey}`
 
   return (
     <>
+      {/* Display button to open modal to create ticket and enter summary */}
       <Button onClick={openModal}
         appearance='primary'
       >Create Bug Ticket
@@ -138,6 +143,7 @@ const View = () => {
           </Modal>
         )}
       </ModalTransition>
+      {/* display table with related bug issues */}
       <DynamicTable
         caption="Related Bug Issues"
         head={head}
