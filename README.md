@@ -1,4 +1,4 @@
-#Jira Issue Context Bug Tracker 
+## Jira Issue Context Bug Tracker 
 
 This project contains a Forge app written in Javascript that displays a dynamic table of related bug tickets in a Jira issue context panel. It displays a `Create Bug Ticket` button that will open a modal for users to type in a summary. After submitting, it will open the newly created ticket in a new tab and display the ticket in the table.
 
@@ -15,6 +15,8 @@ Bug Tracker Table:
 Summary Modal:
 
 <img width="677" alt="Screen Shot 2025-06-02 at 1 43 16 PM" src="https://github.com/user-attachments/assets/cbafdca0-b475-44bb-b559-52d3d7681005" />
+
+
 
 See [developer.atlassian.com/platform/forge/](https://developer.atlassian.com/platform/forge) for documentation and tutorials explaining Forge.
 
